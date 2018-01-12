@@ -18,16 +18,21 @@ The objective of this project is to develop a device(s) that can be attached to 
 * Wireless connectivity to upload data to cloud service.
 
 ## System Description
-### Camera module
+### Camera Module
+**Key Components:**
+* [OpenMV sensor](https://www.openmv.io)
+* BLE / IR comms
+* Onion Omega / Raspberry PI / BeagleBone for application compute
 A camera & compute module mounted on the ceiling above the table. This module will be the "central controller" of the whole system. This module will use machine vision to detect and track the ball as players hit it back and forth. Machine vision can be done using an [OpenMV sensor](https://www.openmv.io).
 
 This overhead module will also comunicate to the display units mounted under the table on each player's side of the table. This communication could be via BLE or IR. Display information such as score, current server, etc will be relayed to the display units. The display units will also include an accelerometer, to communicate exactly when the ball strikes the table. This is necessary, because one camera above the table will have no depth detection, and may frequently be unable to tell when a ball actually strikes the surface.
 
 The camera + machine vision data and the sensor data from the display module can be used by an "application compute" module to calculate which things like player score, current server, player stastics, etc. This can be done by a cheap SBC (Onion Omega, Rasperry PI, BeagleBone Black, etc).
 
-Camera Module BOM:
-* [OpenMV sensor](https://www.openmv.io)
+### Display Modules
+**Key Components:**
+* Display (seven segment, LCD, etc)
+* Keypad interface (tactile switches, cap-sense buttons, etc)
 * BLE / IR comms
-* Onion Omega / Raspberry PI / BeagleBone for application compute
 
-### Display module
+The display module will be mounted under the table near each player. Each module will have a display, keypad interface, and an accelerometer sensor. The display can be used to show score, current server, and other stats. The keypad interface allows the user to indicate a "let serve", a "point redo", or other such controls to the system. The sensor data will be pre-processed and transmitted to the overhead camera module to accurately determine when exactly the ball strikes each side of the table.
